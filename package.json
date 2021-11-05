@@ -18,5 +18,10 @@
   "devDependencies": {
     "@babel/core": "^7.9.0"
   },
-  "private": true
+  "private": true,
+  "name": "App-Clima-IBM-CAC",
+  "version": "1.0.0",
+  "repository": "https://github.com/MendietaSergio/App-Clima-IBM-CAC.git",
+  "author": "Pedro Nastasi <pedronastasi@hotmail.com>",
+  "license": "MIT"
 }
