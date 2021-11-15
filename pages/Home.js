@@ -32,11 +32,22 @@ const Home = ({ navigation }) => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.btnSearch}
-          onPress={() => navigation.navigate("ListWeather")}
+          onPress={() => navigation.navigate("SearchWeather")}
         >
           <Text style={styles.btnText}>
             Consultar Clima{" "}
             <FontAwesome name="search" size={20} color="white" />
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.containerBtnSearch}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.btnSearch}
+          onPress={() => navigation.navigate("ListWeather")}
+        >
+          <Text style={styles.btnText}>
+            Ver Lista
           </Text>
         </TouchableOpacity>
       </View>
