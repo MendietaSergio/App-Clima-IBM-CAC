@@ -1,16 +1,7 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  FlatList,
-  Button,
-} from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, FlatList, Button } from "react-native";
 import ListData from "../components/ListData/ListData";
-
-const ListWheater = ({ navigator }) => {
+const ListWeather = ({ navigator }) => {
   const [dataItem, setDataItem] = useState([
     {
       id: "1",
@@ -54,23 +45,9 @@ const ListWheater = ({ navigator }) => {
     },
   ]);
   const [showMaps, setShowMaps] = useState(false);
-  console.log("data => ", dataItem);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.containerSearch}>
-        <View>
-          <TextInput
-            style={styles.inputSearch}
-            placeholder="Ingrese una localidades/ciudades"
-          />
-          <FontAwesome
-            style={styles.iconSearch}
-            name="search"
-            size={20}
-            color="black"
-          />
-        </View>
-      </View>
+    <>
       {dataItem.lenght > 0 ? (
         <Text>Usted no tiene guardado</Text>
       ) : (
@@ -78,7 +55,7 @@ const ListWheater = ({ navigator }) => {
           {showMaps ? (
             <>
               <View style={styles.containerList}>
-                <Text>Mapa</Text>
+                <Maps />
               </View>
             </>
           ) : (
@@ -105,18 +82,13 @@ const ListWheater = ({ navigator }) => {
           </View>
         </>
       )}
-    </View>
+    </>
   );
 };
-export default ListWheater;
+
+export default ListWeather;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  containerSearch: {
-    marginTop: 20,
-  },
   containerList: {
     flex: 1,
     marginHorizontal: 2.5,
@@ -126,20 +98,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "left",
     marginLeft: 20,
-  },
-  inputSearch: {
-    height: 40,
-    margin: 12,
-    borderWidth: 0.6,
-    borderRadius: 10,
-    backgroundColor: "#EAEDED",
-    padding: 10,
-  },
-  iconSearch: {
-    display: "flex",
-    position: "absolute",
-    right: 30,
-    marginVertical: 20,
   },
   list: {
     flex: 1,
