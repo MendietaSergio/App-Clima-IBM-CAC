@@ -9,11 +9,14 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-const ListData = ({ item }) => {
+const ListData = ({ resultado }) => {
+  const {name, weather, main:{temp_min, temp_max,humidity}} = resultado;
+    
+    console.log("resultado icon ", resultado.weather[0].icon);
   const [showIconAction, setShowIconAction] = useState(false);
-  console.log("item => ", item);
+  // console.log("item => ", item);
   const handleChangeIcon = () => {
-    console.log("click");
+    // console.log("click");
     setShowIconAction(!showIconAction);
   };
   return (
@@ -25,21 +28,22 @@ const ListData = ({ item }) => {
             style={styles.iconAction}
           >
             <AntDesign
-              name={showIconAction ? "closecircleo" : "pluscircleo"}
+              name={showIconAction ? "pluscircleo":"closecircleo"}
               size={24}
-              color={showIconAction ? "red" : "green"}
+              color={showIconAction ? "green":"red"}
             />
           </TouchableOpacity>
           <View style={styles.container}>
-            <Text style={styles.text}>{item.localidad}</Text>
+            <Text style={styles.text}>{name}</Text>
           </View>
           <View style={styles.container}>
-            <Text style={styles.textCity}>{item.ciudad}</Text>
+            <Text style={styles.textCity}>{name}</Text>
             <Feather style={styles.icon} name="sun" size={24} color="black" />
           </View>
           <View style={styles.container}>
-            <Text style={styles.textDate}>{item.fecha}</Text>
-            <Text style={styles.textTem}>{item.temMax}°</Text>
+            <Text style={styles.textDate}>{temp_min}°</Text>
+            <Text style={styles.textTem}>{temp_max}°</Text>
+            <Text style={styles.textTem}>{humidity}%</Text>
           </View>
         </View>
       </TouchableNativeFeedback>
