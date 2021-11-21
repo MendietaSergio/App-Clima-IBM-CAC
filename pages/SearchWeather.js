@@ -12,7 +12,7 @@ import {
 import InputSearch from "../components/InputSearch/InputSearch";
 import ListData from "../components/ListData/ListData";
 import Maps from "../components/Maps/Maps";
-import { haze, rainy, snow, sunny } from "../assets/backgroundImages/Index";
+import { cloudy, rainy, snow, sunny } from "../assets/backgroundImages/Index";
 import Weather from "../components/Weather/Weather";
 import { AntDesign } from "@expo/vector-icons";
 import axios from "axios";
@@ -133,11 +133,11 @@ const SearchWeather = ({ navigator }) => {
     if (weather === "Snow") return snow;
     if (weather === "Clear") return sunny;
     if (weather === "Rain") return rainy;
-    if (weather === "Haze") return haze;
-    if (weather === "Clouds") return haze;
+    // if (weather === "Haze") return haze;
+    if (weather === "Clouds") return cloudy;
     return haze;
   };
-  let textColor = backgroundImage !== sunny ? "white" : "black";
+  let colorText = backgroundImage !== sunny ? "white" : "black";
   return (
     <View style={styles.container}>
       {loaded ? (
@@ -163,10 +163,10 @@ const SearchWeather = ({ navigator }) => {
                 />
               </TouchableOpacity>
               <Weather
+              margin={true}
               ListWeather={ListWeather}
                 fetchClima={fetchClima}
                 resultado={resultado}
-                textColor={textColor}
               />
             </View>
           </ImageBackground>
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
     display: "flex",
     position: "absolute",
     right: 20,
-    marginTop: 60,
+    marginTop: 100,
   },
 });
 const formData = new FormData();
