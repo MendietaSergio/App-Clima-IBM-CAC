@@ -11,7 +11,6 @@ import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 const ListData = ({ navigation, item, deleteCity }) => {
   const { nameCity, country, temp_max, temp_min, temp, _id } = item;
-  const [showIconAction, setShowIconAction] = useState(false);
   const [resultado, setResultado] = useState(null);
 
   const fetchClima = async (ciudad) => {
@@ -38,7 +37,6 @@ const ListData = ({ navigation, item, deleteCity }) => {
     fetchClima(nameCity);
   }, [nameCity]);
   const handleChangeIcon = () => {
-    setShowIconAction(!showIconAction);
     deleteCity(_id);
   };
   const kelvin = 273.15;
@@ -53,9 +51,9 @@ const ListData = ({ navigation, item, deleteCity }) => {
             style={styles.iconAction}
           >
             <AntDesign
-              name={showIconAction ? "pluscircleo" : "closecircleo"}
+              name="closecircleo"
               size={24}
-              color={showIconAction ? "green" : "red"}
+              color="red"
             />
           </TouchableOpacity>
           <View style={styles.container}>
