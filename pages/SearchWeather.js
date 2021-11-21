@@ -44,7 +44,6 @@ const SearchWeather = ({ navigator }) => {
         setResultado(data);
         setLoaded(false);
       } else {
-        setResultado(null);
         showAlert();
       }
     } catch (error) {
@@ -55,7 +54,9 @@ const SearchWeather = ({ navigator }) => {
     if (resultado !== null) {
       const { weather } = resultado;
       const [{ main }] = weather;
-      console.log("main ", main);
+      console.log("main name", resultado.name);
+      ListWeather();
+
       setSendData({
         nameCity: resultado.name,
         country: resultado.sys.country,
@@ -65,7 +66,7 @@ const SearchWeather = ({ navigator }) => {
         temp_min: resultado.main.temp_min,
         temp: resultado.main.temp,
       });
-      
+
       formData.append("nameCity", resultado.name);
       formData.append("country", resultado.sys.country);
       formData.append("lat", resultado.coord.lat);
@@ -91,30 +92,43 @@ const SearchWeather = ({ navigator }) => {
     },
   };
   const handleChangeIcon = async () => {
-    console.log("nameCity", resultado.name);
-    console.log("country", resultado.sys.country);
-    console.log("lat", resultado.coord.lat);
-    console.log("lon", resultado.coord.lon);
-    console.log("temp_max", resultado.main.temp_max);
-    console.log("temp_min", resultado.main.temp_min);
-    console.log("temp", resultado.main.temp);
     console.log("resultado click name ", resultado.name);
-
-    console.log("SendDATA===>", sendData);
+    if (!showIconAction) {
+      try {
+        const { data } = await axios.post(
+          "https://bd-app-clima.vercel.app/listweather",
+          sendData
+        );
+        console.log("recibido");
+        setShowIconAction(true)
+        setSendData({});
+      } catch (error) {
+        console.log(error);
+      }
+    }else{
+      Alert.alert("¡ATENCION!", "La ciudad ya está en su lista", [
+        { text: "Endendido" },
+      ]);
+    }
+  };
+  // useEffect(() => {
+  const ListWeather = async () => {
     try {
-      const { data } = await axios.post(
-        "https://bd-app-clima.vercel.app/listweather",
-        sendData);
-      console.log("recibido");
-      console.log("respo => ", data);
-      // HACER EL MENSAJE DE GUARDADO
-      // al guardarse, que se pueda eliminar
-      setSendData({})
+      await axios
+        .get("https://bd-app-clima.vercel.app/listweather")
+        .then((respo) => {
+          let found = respo.data.findIndex(i => i.nameCity === resultado.name);
+          if(found === -1){
+            setShowIconAction(false)
+          }else{
+            setShowIconAction(true)
+          }
+        });
     } catch (error) {
       console.log(error);
     }
-    setShowIconAction(!showIconAction);
   };
+  // }, [resultado]);
   const getBackgroundImage = (weather) => {
     if (weather === "Snow") return snow;
     if (weather === "Clear") return sunny;
@@ -143,12 +157,13 @@ const SearchWeather = ({ navigator }) => {
                 style={styles.iconAction}
               >
                 <AntDesign
-                  name={showIconAction ? "pluscircleo" : "checkcircleo"}
+                  name={showIconAction ? "checkcircleo" : "pluscircleo"}
                   size={24}
-                  color={showIconAction ? "#000" : "green"}
+                  color={showIconAction ? "green" : "#000"}
                 />
               </TouchableOpacity>
               <Weather
+              ListWeather={ListWeather}
                 fetchClima={fetchClima}
                 resultado={resultado}
                 textColor={textColor}
