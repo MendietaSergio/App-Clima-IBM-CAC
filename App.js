@@ -8,6 +8,7 @@ import SearchWeather from "./pages/SearchWeather";
 import AboutTeam from "./pages/AboutTeam";
 import AboutApp from "./pages/AboutApp";
 import ListWeather from "./pages/ListWeather";
+import DetailWeather from "./pages/DetailWeather";
 const Stack = createNativeStackNavigator();
 
 
@@ -27,6 +28,7 @@ export default function App() {
             <Stack.Screen name="AboutApp" component={AboutApp} options={{title:"Acerca de la App"}}/>
             <Stack.Screen name="SearchWeather" component={SearchWeather} options={{title:"Buscar Localidades"}} text={{text:"prueba"}}/>
             <Stack.Screen name="ListWeather" component={ListWeather} options={{title:"Resultado"}}/>
+            <Stack.Screen name="DetailWeather" component={DetailWeather} options={{title:"Detalle"}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GestureHandlerRootView>
