@@ -8,13 +8,14 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-const InputSearch = ({fetchClima }) => {
+const InputSearch = ({fetchClima, ListWeather }) => {
   const [ciudad, setCiudad] = useState("");
   const consultarClima = () => {
     if (ciudad === "") {
       mostrarAlert();
       return;
     }
+    ListWeather()
     fetchClima(ciudad)
   };
   const mostrarAlert = () => {
