@@ -10,6 +10,7 @@ const Weather = ({
   fetchClima,
   textColor,
   viewInputSearch = true,
+  ListWeather
 }) => {
   const d = new Date();
   let hours = d.toLocaleTimeString();
@@ -23,7 +24,7 @@ const Weather = ({
 
   return (
     <View>
-      {viewInputSearch ? <InputSearch fetchClima={fetchClima} /> : null}
+      {viewInputSearch ? <InputSearch fetchClima={fetchClima} ListWeather={ListWeather} /> : null}
       <View style={styles.container}>
         <View style={styles.extraInfo}>
           <Text style={{ ...styles.headerText, textColor, fontSize: 18 }}>
