@@ -81,7 +81,7 @@ const ListWeather = ({ navigation }) => {
                       style={styles.list}
                       data={resultado}
                       renderItem={({ item }) => (
-                        <ListData item={item} deleteCity={deleteCity} />
+                        <ListData item={item} deleteCity={deleteCity} navigation={navigation} />
                       )}
                       keyExtractor={(item) => item._id}
                     />
