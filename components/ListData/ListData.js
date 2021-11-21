@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -9,18 +9,44 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-const ListData = ({navigation, item, deleteCity }) => {
+const ListData = ({ navigation, item, deleteCity }) => {
   const { nameCity, country, temp_max, temp_min, temp, _id } = item;
   const [showIconAction, setShowIconAction] = useState(false);
+  const [resultado, setResultado] = useState(null);
+
+  const fetchClima = async (ciudad) => {
+    const apiID = "8eaae482f433816013eb58a3b326c92d";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiID}`;
+    console.log(url);
+    try {
+      const resp = await fetch(url);
+      if (resp.status == 200) {
+        const data = await resp.json();
+        console.log("data =>", data);
+        setResultado(data);
+        console.log("resultado ", resultado);
+      } else {
+        showAlert();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const d = new Date();
+  let hours = d.toLocaleTimeString();
+  useEffect(() => {
+    fetchClima(nameCity);
+  }, [nameCity]);
   const handleChangeIcon = () => {
     setShowIconAction(!showIconAction);
     deleteCity(_id);
   };
+  const kelvin = 273.15;
   return (
     <>
       <TouchableNativeFeedback
-        onPress={()=>navigation.navigate("DetailWeather",nameCity)}
-        >
+        onPress={() => navigation.navigate("DetailWeather", nameCity)}
+      >
         <View style={styles.data}>
           <TouchableOpacity
             onPress={() => handleChangeIcon()}
@@ -40,14 +66,19 @@ const ListData = ({navigation, item, deleteCity }) => {
           </View>
           <View style={styles.container}>
             <View style={styles.containerTemp}>
-              <Text style={styles.textTem}>Max. {temp_max}°</Text>
-              <Text style={styles.textTem}>Min. {temp_min}°</Text>
+              <Text style={styles.textTem}>
+                Max. {parseInt(temp_max - kelvin)}°
+              </Text>
+              <Text style={styles.textTem}>
+                Min. {parseInt(temp_min - kelvin)}°
+              </Text>
             </View>
             <View style={styles.containerIcon}>
               <Feather style={styles.icon} name="sun" size={24} color="black" />
-              <Text style={styles.textTem}>{temp}°</Text>
+              <Text style={styles.textTem}>{parseInt(temp - kelvin)}°</Text>
             </View>
           </View>
+            <Text style={styles.textHours}>Ultima actualización: {hours}</Text>
         </View>
       </TouchableNativeFeedback>
     </>
@@ -88,7 +119,7 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-    marginVertical:2
+    marginVertical: 2,
   },
   textCity: {
     fontSize: 12,
@@ -96,6 +127,12 @@ const styles = StyleSheet.create({
   textTem: {
     fontSize: 14,
     marginRight: 30,
+  },
+  textHours: {
+    textAlign: "left",
+    fontSize: 10,
+    marginRight: 30,
+    // marginVertical: 10,
   },
   icon: {
     marginRight: 30,
