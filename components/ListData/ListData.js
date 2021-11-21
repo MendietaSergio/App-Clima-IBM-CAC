@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-const ListData = ({ item, deleteCity }) => {
+const ListData = ({navigation, item, deleteCity }) => {
   const { nameCity, country, temp_max, temp_min, temp, _id } = item;
   const [showIconAction, setShowIconAction] = useState(false);
   const handleChangeIcon = () => {
@@ -18,7 +18,9 @@ const ListData = ({ item, deleteCity }) => {
   };
   return (
     <>
-      <TouchableNativeFeedback>
+      <TouchableNativeFeedback
+        onPress={()=>navigation.navigate("DetailWeather",nameCity)}
+        >
         <View style={styles.data}>
           <TouchableOpacity
             onPress={() => handleChangeIcon()}
