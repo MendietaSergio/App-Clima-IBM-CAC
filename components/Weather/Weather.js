@@ -9,6 +9,7 @@ const Weather = ({
   resultado,
   fetchClima,
   textColor,
+  viewInputSearch = true,
 }) => {
   const d = new Date();
   let hours = d.toLocaleTimeString();
@@ -19,12 +20,10 @@ const Weather = ({
   } = resultado;
   const kelvin = 273.15;
   const [textInfo, setTextInfo] = useState("");
-  
+
   return (
     <View>
-      <InputSearch
-        fetchClima={fetchClima}
-      />
+      {viewInputSearch ? <InputSearch fetchClima={fetchClima} /> : null}
       <View style={styles.container}>
         <View style={styles.extraInfo}>
           <Text style={{ ...styles.headerText, textColor, fontSize: 18 }}>
