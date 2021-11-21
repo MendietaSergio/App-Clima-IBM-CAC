@@ -5,19 +5,16 @@ import {
   Text,
   TouchableHighlight,
   TouchableOpacity,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-const ListData = ({ resultado }) => {
-  const {name, weather, main:{temp_min, temp_max,humidity}} = resultado;
-    
-    console.log("resultado icon ", resultado.weather[0].icon);
+const ListData = ({ item, deleteCity }) => {
+  const { nameCity, country, temp_max, temp_min, temp, _id } = item;
   const [showIconAction, setShowIconAction] = useState(false);
-  // console.log("item => ", item);
   const handleChangeIcon = () => {
-    // console.log("click");
     setShowIconAction(!showIconAction);
+    deleteCity(_id);
   };
   return (
     <>
@@ -28,22 +25,26 @@ const ListData = ({ resultado }) => {
             style={styles.iconAction}
           >
             <AntDesign
-              name={showIconAction ? "pluscircleo":"closecircleo"}
+              name={showIconAction ? "pluscircleo" : "closecircleo"}
               size={24}
-              color={showIconAction ? "green":"red"}
+              color={showIconAction ? "green" : "red"}
             />
           </TouchableOpacity>
           <View style={styles.container}>
-            <Text style={styles.text}>{name}</Text>
+            <Text style={styles.text}>
+              {nameCity}
+              <Text style={styles.textCity}>, {country}.</Text>
+            </Text>
           </View>
           <View style={styles.container}>
-            <Text style={styles.textCity}>{name}</Text>
-            <Feather style={styles.icon} name="sun" size={24} color="black" />
-          </View>
-          <View style={styles.container}>
-            <Text style={styles.textDate}>{temp_min}°</Text>
-            <Text style={styles.textTem}>{temp_max}°</Text>
-            <Text style={styles.textTem}>{humidity}%</Text>
+            <View style={styles.containerTemp}>
+              <Text style={styles.textTem}>Max. {temp_max}°</Text>
+              <Text style={styles.textTem}>Min. {temp_min}°</Text>
+            </View>
+            <View style={styles.containerIcon}>
+              <Feather style={styles.icon} name="sun" size={24} color="black" />
+              <Text style={styles.textTem}>{temp}°</Text>
+            </View>
           </View>
         </View>
       </TouchableNativeFeedback>
@@ -76,12 +77,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  textCity: {
-    fontSize: 14,
+  containerIcon: {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
-  textDate: {
-    fontSize: 10,
-    margin: 0,
+  containerTemp: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    marginVertical:2
+  },
+  textCity: {
+    fontSize: 12,
   },
   textTem: {
     fontSize: 14,
