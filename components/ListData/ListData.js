@@ -6,12 +6,17 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   TouchableNativeFeedback,
+  Image,
+  ImageBackground,
+  Dimensions,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { haze, rainy, snow, sunny } from "../../assets/backgroundImages/Index";
 import { AntDesign } from "@expo/vector-icons";
 const ListData = ({ navigation, item, deleteCity }) => {
   const { nameCity, country, temp_max, temp_min, temp, _id } = item;
   const [resultado, setResultado] = useState(null);
+  const [backgroundImage, setBackgroundImage] = useState(null);
 
   const fetchClima = async (ciudad) => {
     const apiID = "8eaae482f433816013eb58a3b326c92d";
@@ -31,6 +36,24 @@ const ListData = ({ navigation, item, deleteCity }) => {
       console.log(error);
     }
   };
+  useEffect(() => {
+    if (resultado !== null) {
+      const [{ main }] = resultado.weather;
+      console.log("main name", main);
+
+      setBackgroundImage(getBackgroundImage(main));
+    }
+  }, [resultado]);
+  const getBackgroundImage = (weather) => {
+    if (weather === "Snow") return snow;
+    if (weather === "Clear") return sunny;
+    if (weather === "Rain") return rainy;
+    if (weather === "Haze") return haze;
+    if (weather === "Clouds") return haze;
+    return haze;
+  };
+  // CAMBIAR EL COLOR DEL TEXTO EN BASE A LA IMAGEN DE FONDO
+  let textColor = backgroundImage !== sunny ? "white" : "black";
   const d = new Date();
   let hours = d.toLocaleTimeString();
   useEffect(() => {
@@ -40,43 +63,55 @@ const ListData = ({ navigation, item, deleteCity }) => {
     deleteCity(_id);
   };
   const kelvin = 273.15;
+
   return (
     <>
       <TouchableNativeFeedback
         onPress={() => navigation.navigate("DetailWeather", nameCity)}
       >
         <View style={styles.data}>
-          <TouchableOpacity
-            onPress={() => handleChangeIcon()}
-            style={styles.iconAction}
+          <ImageBackground
+            style={styles.backgroundImg}
+            source={backgroundImage}
+            resizeMode="cover"
           >
-            <AntDesign
-              name="closecircleo"
-              size={24}
-              color="red"
-            />
-          </TouchableOpacity>
-          <View style={styles.container}>
-            <Text style={styles.text}>
-              {nameCity}
-              <Text style={styles.textCity}>, {country}.</Text>
-            </Text>
-          </View>
-          <View style={styles.container}>
-            <View style={styles.containerTemp}>
-              <Text style={styles.textTem}>
-                Max. {parseInt(temp_max - kelvin)}°
-              </Text>
-              <Text style={styles.textTem}>
-                Min. {parseInt(temp_min - kelvin)}°
+            <View style={styles.containerData}>
+              <TouchableOpacity
+                onPress={() => handleChangeIcon()}
+                style={styles.iconAction}
+              >
+                <AntDesign name="closecircleo" size={24} color="red" />
+              </TouchableOpacity>
+              <View style={styles.container}>
+                <Text style={styles.text}>
+                  {nameCity}
+                  <Text style={styles.textCity}>, {country}.</Text>
+                </Text>
+              </View>
+              <View style={styles.container}>
+                <View style={styles.containerTemp}>
+                  <Text style={styles.textTem}>
+                    Max. {parseInt(temp_max - kelvin)}°
+                  </Text>
+                  <Text style={styles.textTem}>
+                    Min. {parseInt(temp_min - kelvin)}°
+                  </Text>
+                </View>
+                <View style={styles.containerIcon}>
+                  <Feather
+                    style={styles.icon}
+                    name="sun"
+                    size={24}
+                    color="black"
+                  />
+                  <Text style={styles.textTem}>{parseInt(temp - kelvin)}°</Text>
+                </View>
+              </View>
+              <Text style={styles.textHours}>
+                Ultima actualización: {hours}
               </Text>
             </View>
-            <View style={styles.containerIcon}>
-              <Feather style={styles.icon} name="sun" size={24} color="black" />
-              <Text style={styles.textTem}>{parseInt(temp - kelvin)}°</Text>
-            </View>
-          </View>
-            <Text style={styles.textHours}>Ultima actualización: {hours}</Text>
+          </ImageBackground>
         </View>
       </TouchableNativeFeedback>
     </>
@@ -92,11 +127,13 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderBottomWidth: 1,
     borderRadius: 10,
-    paddingVertical: 6, //esto agrega el padding arriba y abajo
-    paddingHorizontal: 10, //esto le agrega el padding a los lados
     marginVertical: 6,
     marginHorizontal: 8,
     // cursor: "pointer",
+  },
+  containerData: {
+    paddingVertical: 6, //esto agrega el padding arriba y abajo
+    paddingHorizontal: 10, //esto le agrega el padding a los lados
   },
   text: {
     fontSize: 20,
@@ -140,5 +177,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 10,
     marginTop: 10,
+  },
+  backgroundImg: {
+    flex: 1,
+    overflow:'hidden',
+    borderRadius:10,
+    // width: Dimensions.get("screen").width,
+    padding: 0,
   },
 });
