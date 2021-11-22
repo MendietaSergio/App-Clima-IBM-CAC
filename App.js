@@ -115,7 +115,7 @@ export default function App() {
               <Stack.Screen
                 name="ListWeather"
                 component={ListWeather}
-                options={{ title: "Resultado" }}
+                options={{ title: "Lista guardada" }}
               />
               <Stack.Screen
                 name="DetailWeather"
