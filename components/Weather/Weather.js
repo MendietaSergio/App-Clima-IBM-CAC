@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   },
   dividerHorizontal: {
     marginHorizontal: 10,
-    marginTop: 40,
+    marginTop: 10,
     borderBottomWidth: 1,
   },
   containerInfo: {
@@ -186,6 +186,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.5)",
   },
   containerButtom:{
-    marginTop: 10
+    marginTop: 40
   }
 });
