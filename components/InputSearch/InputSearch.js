@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-const InputSearch = ({fetchClima, ListWeather }) => {
+const InputSearch = ({fetchClima, ListWeather, colorText }) => {
   const [ciudad, setCiudad] = useState("");
   const consultarClima = () => {
     if (ciudad === "") {
@@ -33,12 +33,11 @@ const InputSearch = ({fetchClima, ListWeather }) => {
           placeholder="Ingrese una ciudad"
         />
         <FontAwesome
-          style={styles.iconSearch}
           name="search"
           size={20}
-          color="black"
+          color={colorText}
           onPress={() => consultarClima()}
-        />
+        /> 
       </View>
     </>
   );
