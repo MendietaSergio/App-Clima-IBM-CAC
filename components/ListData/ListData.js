@@ -11,7 +11,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { haze, rainy, snow, sunny } from "../../assets/backgroundImages/Index";
+import { cloudy, rainy, snow, sunny } from "../../assets/backgroundImages/Index";
 import { AntDesign } from "@expo/vector-icons";
 const ListData = ({ navigation, item, deleteCity }) => {
   const { nameCity, country, temp_max, temp_min, temp, _id } = item;
@@ -49,7 +49,7 @@ const ListData = ({ navigation, item, deleteCity }) => {
     if (weather === "Clear") return sunny;
     if (weather === "Rain") return rainy;
     if (weather === "Haze") return haze;
-    if (weather === "Clouds") return haze;
+    if (weather === "Clouds") return cloudy;
     return haze;
   };
   // CAMBIAR EL COLOR DEL TEXTO EN BASE A LA IMAGEN DE FONDO
