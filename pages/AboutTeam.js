@@ -15,7 +15,7 @@ const AboutTeam = ({ navigator }) => {
   const [showAvatar3, setShowAvatar3] = useState(false);
   const handleShow = (select) => {
     if (select === "one") {
-        console.log("one");
+      console.log("one");
       setShowAvatar3(false);
       setShowAvatar1(true);
       setShowAvatar2(false);
@@ -34,23 +34,24 @@ const AboutTeam = ({ navigator }) => {
       <View style={styles.container}>
         <Text style={styles.textTitle}>Nuestro equipo </Text>
         <View style={styles.containerAvatar}>
-          <View style={styles.avatar}>
-            <TouchableNativeFeedback 
-            opacity={0.6}
-            
-            onPress={() => handleShow("one")}>
+          <TouchableNativeFeedback
+            // opacity={0.6}
+
+            onPress={() => handleShow("one")}
+          >
+            <View style={styles.avatar}>
               <Image
                 source={Avatar}
                 style={styles.backgroundImg}
                 resizeMode="cover"
               />
-            </TouchableNativeFeedback>
-            <View style={styles.containerName}>
-              <Text style={styles.textName}>Nombre</Text>
-              <Text style={styles.textName}>Apellido</Text>
-              <Text style={styles.textCargo}>Cargo</Text>
+              <View style={styles.containerName}>
+                <Text style={styles.textName}>Nombre</Text>
+                <Text style={styles.textName}>Apellido</Text>
+                <Text style={styles.textCargo}>Cargo</Text>
+              </View>
             </View>
-          </View>
+          </TouchableNativeFeedback>
           <TouchableNativeFeedback onPress={() => handleShow("two")}>
             <View style={styles.avatar}>
               <Image
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   containerAvatar: {
-    // flexDirection: "row",
+    flexDirection: "row",
     justifyContent: "space-around",
     marginVertical: 20,
   },
