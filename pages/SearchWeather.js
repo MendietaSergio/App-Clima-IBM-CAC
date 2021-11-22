@@ -7,6 +7,8 @@ import {
   ActivityIndicator,
   Dimensions,
   TouchableOpacity,
+  ScrollView,
+  
 } from "react-native";
 import { cloudy, rainy, snow, sunny } from "../assets/backgroundImages/Index";
 import Weather from "../components/Weather/Weather";
@@ -96,12 +98,12 @@ const SearchWeather = ({ navigator }) => {
           sendData
         );
         console.log("recibido");
-        setShowIconAction(true)
+        setShowIconAction(true);
         setSendData({});
       } catch (error) {
         console.log(error);
       }
-    }else{
+    } else {
       Alert.alert("¡ATENCION!", "La ciudad ya está en su lista", [
         { text: "Endendido" },
       ]);
@@ -112,11 +114,13 @@ const SearchWeather = ({ navigator }) => {
       await axios
         .get("https://bd-app-clima.vercel.app/listweather")
         .then((respo) => {
-          let found = respo.data.findIndex(i => i.nameCity === resultado.name);
-          if(found === -1){
-            setShowIconAction(false)
-          }else{
-            setShowIconAction(true)
+          let found = respo.data.findIndex(
+            (i) => i.nameCity === resultado.name
+          );
+          if (found === -1) {
+            setShowIconAction(false);
+          } else {
+            setShowIconAction(true);
           }
         });
     } catch (error) {
@@ -131,7 +135,8 @@ const SearchWeather = ({ navigator }) => {
     return haze;
   };
   let colorText = backgroundImage !== sunny ? "white" : "black";
-  console.log("color del texto ",colorText);
+  console.log("color del texto ", colorText);
+
   return (
     <View style={styles.container}>
       {loaded ? (
@@ -140,31 +145,35 @@ const SearchWeather = ({ navigator }) => {
         </View>
       ) : (
         <>
+      <ScrollView>
+
           <ImageBackground
             source={backgroundImage}
             style={styles.backgroundImg}
             resizeMode="cover"
           >
             <View style={styles.containerSearch}>
-              <TouchableOpacity
-                onPress={() => handleChangeIcon()}
-                style={styles.iconAction}
-              >
-                <AntDesign
-                  name={showIconAction ? "checkcircleo" : "pluscircleo"}
-                  size={24}
-                  color={showIconAction ? "green" : colorText}
-                />
-              </TouchableOpacity>
               <Weather
-              margin={true}
-              ListWeather={ListWeather}
+                margin={true}
+                ListWeather={ListWeather}
                 fetchClima={fetchClima}
                 resultado={resultado}
                 colorText={colorText}
               />
             </View>
           </ImageBackground>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => handleChangeIcon()}
+            style={styles.iconAction}
+          >
+            <AntDesign
+              name={showIconAction ? "checkcircleo" : "pluscircleo"}
+              size={24}
+              color={showIconAction ? "green" : colorText}
+            />
+          </TouchableOpacity>
+          </ScrollView>
         </>
       )}
     </View>
@@ -209,7 +218,7 @@ const styles = StyleSheet.create({
     display: "flex",
     position: "absolute",
     right: 20,
-    marginTop: 100,
+    top: 125,
   },
 });
 const formData = new FormData();
