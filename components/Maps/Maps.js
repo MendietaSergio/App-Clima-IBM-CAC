@@ -20,7 +20,7 @@ const Maps = () =>{
 export default Maps;
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: 'transparent'        
+        opacity: 0.5
     },
     map:{
         width:Dimensions.get('window').width-40,
