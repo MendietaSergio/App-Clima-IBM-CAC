@@ -20,7 +20,6 @@ const ListWeather = ({ navigation }) => {
         "https://bd-app-clima.vercel.app/listweather"
       );
       setResultado(data);
-      // setLoaded(false);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +46,6 @@ const ListWeather = ({ navigation }) => {
   }
   useEffect(() => {
     if (resultado != null) {
-      // console.log("resultado=> ", resultado);
       setLoaded(false);
     }
   }, [resultado]);
@@ -73,10 +71,6 @@ const ListWeather = ({ navigation }) => {
               ) : (
                 <>
                   <View style={styles.containerList}>
-                    <Text style={styles.textTitle}>
-                      Lista de ubicaciones guardadas
-                    </Text>
-
                     <FlatList
                       style={styles.list}
                       data={resultado}
