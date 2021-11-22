@@ -27,6 +27,7 @@ const InputSearch = ({fetchClima, ListWeather }) => {
     <>
       <View style={styles.searchBar}>
         <TextInput
+        placeholderTextColor="#000" 
           value={ciudad}
           onChangeText={(text) => setCiudad(text)}
           placeholder="Ingrese una ciudad"
@@ -56,7 +57,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginHorizontal: 10,
     paddingHorizontal: 10,
-    backgroundColor: "lightgray",
+    color:'black',
+    // backgroundColor: "rgba(21,211,211,0.2)",
     borderColor: "lightgray",
   },
 });
