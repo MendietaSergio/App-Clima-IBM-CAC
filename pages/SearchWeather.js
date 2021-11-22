@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   ImageBackground,
   Alert,
@@ -9,9 +8,6 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-import InputSearch from "../components/InputSearch/InputSearch";
-import ListData from "../components/ListData/ListData";
-import Maps from "../components/Maps/Maps";
 import { cloudy, rainy, snow, sunny } from "../assets/backgroundImages/Index";
 import Weather from "../components/Weather/Weather";
 import { AntDesign } from "@expo/vector-icons";
@@ -111,7 +107,6 @@ const SearchWeather = ({ navigator }) => {
       ]);
     }
   };
-  // useEffect(() => {
   const ListWeather = async () => {
     try {
       await axios
@@ -128,16 +123,15 @@ const SearchWeather = ({ navigator }) => {
       console.log(error);
     }
   };
-  // }, [resultado]);
   const getBackgroundImage = (weather) => {
     if (weather === "Snow") return snow;
     if (weather === "Clear") return sunny;
     if (weather === "Rain") return rainy;
-    // if (weather === "Haze") return haze;
     if (weather === "Clouds") return cloudy;
     return haze;
   };
   let colorText = backgroundImage !== sunny ? "white" : "black";
+  console.log("color del texto ",colorText);
   return (
     <View style={styles.container}>
       {loaded ? (
@@ -159,7 +153,7 @@ const SearchWeather = ({ navigator }) => {
                 <AntDesign
                   name={showIconAction ? "checkcircleo" : "pluscircleo"}
                   size={24}
-                  color={showIconAction ? "green" : "#000"}
+                  color={showIconAction ? "green" : colorText}
                 />
               </TouchableOpacity>
               <Weather
@@ -167,6 +161,7 @@ const SearchWeather = ({ navigator }) => {
               ListWeather={ListWeather}
                 fetchClima={fetchClima}
                 resultado={resultado}
+                colorText={colorText}
               />
             </View>
           </ImageBackground>
