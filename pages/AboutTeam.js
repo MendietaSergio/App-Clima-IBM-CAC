@@ -75,9 +75,9 @@ const AboutTeam = ({ navigator }) => {
                   resizeMode="cover"
                 />
                 <View style={styles.containerName}>
-                  <Text style={styles.textName}>Nombre</Text>
-                  <Text style={styles.textName}>Apellido</Text>
-                  <Text style={styles.textCargo}>Cargo</Text>
+                  <Text style={styles.textName}>Johana</Text>
+                  <Text style={styles.textName}>Torres</Text>
+                  <Text style={styles.textCargo}>Investigacion</Text>
                 </View>
               </View>
             </TouchableNativeFeedback>
@@ -100,7 +100,7 @@ const AboutTeam = ({ navigator }) => {
             <Text style={styles.listTool}>○ React Native</Text>
             <Text style={styles.listTool}>○ Expo Cli</Text>
             <Text style={styles.listTool}>○ Node JS</Text>
-            <Text style={styles.listTool}>○ MondoDB</Text>
+            <Text style={styles.listTool}>○ MongoDB</Text>
             <Text style={styles.listTool}>○ API OpenWeatherMap</Text>
             <Text style={styles.listTool}>○ Trello</Text>
             <Text style={styles.listTool}>○ Canva</Text>
