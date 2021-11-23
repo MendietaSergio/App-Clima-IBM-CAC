@@ -31,11 +31,8 @@ Para iniciar el sistema  utilizar
     ```bsh
         npm install /
     ```
-   * Expo
-    ```bsh
-        npm i expo-cli /
-    ```
-    * React
+   
+    * Expo Cli
     ```bsh
         npm install -g expo-cli / yarn global add expo-cli
     ```
