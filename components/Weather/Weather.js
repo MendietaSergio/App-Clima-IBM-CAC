@@ -22,6 +22,7 @@ const Weather = ({
     weather,
     main: { temp, temp_min, temp_max, humidity },
     wind: { speed },
+    coord: {lat, lon}
   } = resultado;
   console.log("descripcion ", weather[0]);
   const kelvin = 273.15;
@@ -77,7 +78,7 @@ const Weather = ({
         </View>
         <View style={styles.containerButtom}>
           <View>
-            <Maps />
+            <Maps lat={lat} lon={lon}/>
           </View>
           <View style={{...styles.dividerHorizontal, borderBottomColor: colorText}} />
           <View style={styles.containerInfo}>
