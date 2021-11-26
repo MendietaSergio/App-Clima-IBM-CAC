@@ -1,84 +1,53 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { render } from 'react-dom';
-import { Dimensions, StyleSheet, View } from 'react-native';
-import  {   MapView, Marker  }  from "react-native-maps"
+import React, { useState, useRef, useEffect } from "react";
+import { Dimensions, StyleSheet, View, Button } from "react-native";
+import MapView from "react-native-maps";
+import { Marker } from "react-native-maps";
+const Maps = ({ lat, lon, viewRefLocation = true }) => {
+  const mapRef = useRef(null);
+  const [region, setRegion] = useState({
+    latitude: lat,
+    longitude: lon,
+    latitudeDelta: 0.9,
+    longitudeDelta: 0.9,
+  });
+  console.log("LAT ", lat, " LON ", lon);
+  console.log("REGION =>>> ", region);
+  const refLocation = {
+    latitude: lat,
+    longitude: lon,
+    latitudeDelta: 0.1203,
+    longitudeDelta: 0.3355,
+  };
+  useEffect(() => {
+    if (viewRefLocation) {
+      ToRefLocation();
+    }
+  }, [lat, lon]);
+  const ToRefLocation = () => {
+    mapRef.current.animateToRegion(refLocation, 3 * 1000);
+  };
+  return (
+    <View style={styles.container}>
+      <MapView
+        ref={mapRef}
+        style={styles.map}
+        initialRegion={region}
+        onRegionChangeComplete={(region) => setRegion(region)}
+      >
+        <Marker coordinate={{ latitude: lat, longitude: lon }} />
+      </MapView>
+    </View>
+  );
+};
 
- const Maps = () =>{
-     return(
-         <View style={styles.container}> 
-             <MapView
-              style={styles.map}
-              initialRegion={{
-                 latitude: 39.675775, 
-                 longitude: -75.768287,
-                 latitudeDelta: 0.0122,
-                 longitudeDelta: 0.0121,
-               }}
-             />
-         </View>
-     )
- }
-
-
-
-// getInitialState() {
-// return {
-//     region: {
-//       latitude: 33.675775,
-//       longitude: -75.768287,
-//       latitudeDelta: 0.0122,
-//       longitudeDelta: 0.0121,
-//     },
-//   };
-// }
-
-// onRegionChange(region) {
-//   this.setState({ region });
-// }
-// const Maps = ()=> {
-//     const [ciudad,setCiudad]=useState([]);
-    
-//     useEffect(()=>{
-//         getDatos();
-//     },[])
-
-//     const getDatos= async () => {
-//         try {
-//           const { data } = await axios.get(
-//             "https://bd-app-clima.vercel.app/listweather"
-//           );
-//           setCiudad(data);
-//         } catch (error) {
-//           console.log(error);
-//         }
-//       };
-//     return(
-
-//         <MapView
-//         region={this.state.region}
-//         onRegionChange={this.onRegionChange}
-//         >
-//         {ciudad.map((marker) => (
-//             <Marker
-            
-//             latitude={marker.lat}
-//             longitude={marker.lon}
-                       
-//             />
-//             ))}
-//             </MapView>
-//         )
-// }
 
 export default Maps;
 const styles = StyleSheet.create({
-    container:{
-        opacity: 0.5
-    },
-    map:{
-        width:Dimensions.get('window').width-40,
-        height: Dimensions.get('window').height/5,
-      
-    }
-})
+  container: {
+    opacity: 0.5,
+  },
+  map: {
+    width: Dimensions.get("window").width - 40,
+    height: Dimensions.get("window").height / 5,
+  },
+});
