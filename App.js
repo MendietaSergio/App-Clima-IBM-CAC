@@ -6,7 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SearchWeather from "./pages/SearchWeather";
 import AboutTeam from "./pages/AboutTeam";
-import AboutApp from "./pages/AboutApp";
 import ListWeather from "./pages/ListWeather";
 import DetailWeather from "./pages/DetailWeather";
 import Sol from "./assets/backgroundImages/sol.png";
@@ -69,12 +68,7 @@ export default function App() {
             source={Nubes}
           />
           <Animated.Image style={[styles.imageNube2]} source={Nubes} />
-          <Animated.Text
-            style={[
-              styles.textInicio,
-              { opacity: show},
-            ]}
-          >
+          <Animated.Text style={[styles.textInicio, { opacity: show }]}>
             ClimAPP
           </Animated.Text>
         </View>
@@ -102,14 +96,9 @@ export default function App() {
                 options={{ title: "Acerca de nosotros" }}
               />
               <Stack.Screen
-                name="AboutApp"
-                component={AboutApp}
-                options={{ title: "Acerca de la App" }}
-              />
-              <Stack.Screen
                 name="SearchWeather"
                 component={SearchWeather}
-                options={{ title: "Buscar Localidades" }}
+                options={{ title: "Buscar" }}
                 text={{ text: "prueba" }}
               />
               <Stack.Screen
@@ -168,6 +157,6 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: "#000",
     marginTop: 40,
-    fontWeight:'bold'
+    fontWeight: "bold",
   },
 });
