@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import { cloudy, rainy, snow, sunny } from "../assets/backgroundImages/Index";
+import { cloudy, rainy, snow, sunny, haze } from "../assets/backgroundImages/Index";
 import Weather from "../components/Weather/Weather";
 import { AntDesign } from "@expo/vector-icons";
 import axios from "axios";
