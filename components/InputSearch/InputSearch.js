@@ -32,6 +32,7 @@ const InputSearch = ({ fetchClima, ListWeather, colorText }) => {
         <TextInput
           placeholderTextColor="#000"
           value={ciudad}
+          style={{width:'80%'}}
           onChangeText={(text) => setCiudad(text)}
           placeholder="Ingrese una ciudad"
           onSubmitEditing={() => consultarClima()}
