@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import ListData from "../components/ListData/ListData";
 import axios from "axios";
+import Maps from "../components/Maps/Maps";
+
 
 const ListWeather = ({ navigation }) => {
   const [showMaps, setShowMaps] = useState(false);
@@ -24,20 +26,13 @@ const ListWeather = ({ navigation }) => {
       console.log(error);
     }
   };
-  const config = {
-    headaers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Accept: "application/json",
-    },
-  };
+  
   const deleteCity = async (id) =>{
-    console.log("eliminado id => ", id);
     try {
       await axios.delete(
         `https://bd-app-clima.vercel.app/delete/${id}`
       )
       .then(resp =>{
-        console.log("data => ", resp.data.message);
         getListWeather()
       })
     } catch (error) {
@@ -65,7 +60,7 @@ const ListWeather = ({ navigation }) => {
               {showMaps ? (
                 <>
                   <View style={styles.containerList}>
-                    <Maps />
+                    <Maps resultado={resultado} allLocation={true} viewRefLocation={false}/>
                   </View>
                 </>
               ) : (
