@@ -7,15 +7,19 @@ import {
   TouchableNativeFeedback,
   ScrollView,
   Linking,
+  Modal,
+  ImageBackground,
 } from "react-native";
-import Avatar from "../assets/backgroundImages/avatar.jpg";
+import { avatar, avatarSM } from "../assets/backgroundImages/Index";
+import { EvilIcons } from "@expo/vector-icons";
+import Portada from "../assets/backgroundImages/Img/cloudy.jpeg";
+
 const AboutTeam = ({ navigator }) => {
   const [showAvatar1, setShowAvatar1] = useState(false);
   const [showAvatar2, setShowAvatar2] = useState(false);
   const [showAvatar3, setShowAvatar3] = useState(false);
   const handleShow = (select) => {
     if (select === "one") {
-      console.log("one");
       setShowAvatar3(false);
       setShowAvatar1(true);
       setShowAvatar2(false);
@@ -33,36 +37,171 @@ const AboutTeam = ({ navigator }) => {
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.textTitle}>Nuestro equipo </Text>
-        <View style={styles.containerAvatar}>
-          <TouchableNativeFeedback
-            // opacity={0.6}
+        <View>
+          <Modal visible={showAvatar1} transparent animationType="slide">
+            <View style={styles.containerModal}>
+              <View style={styles.containerClosed}>
+                <ImageBackground
+                  style={{
+                    width: "100%",
+                    height: "46%",
+                  }}
+                  source={Portada}
+                  resizeMode="cover"
+                >
+                  <View style={styles.closedModel}>
+                    <TouchableNativeFeedback
+                      onPress={() => setShowAvatar1(false)}
+                    >
+                      <EvilIcons name="close" size={24} color="white" />
+                    </TouchableNativeFeedback>
+                  </View>
+                  <View style={styles.headerModal}>
+                    <View style={styles.avatar}>
+                      <Image
+                        source={avatar}
+                        style={styles.backgroundImg}
+                        resizeMode="cover"
+                      />
+                      <View style={styles.containerName}>
+                        <Text style={styles.textName}>Eliana</Text>
+                        <Text style={styles.textName}>Molinari</Text>
+                        <Text style={styles.textCargo}>Investigación</Text>
+                      </View>
+                    </View>
+                  </View>
+                </ImageBackground>
+                <View style={styles.bodyModel}>
+                  <Text>
+                    Desarrollador web full stack, autodidacta, aprendiendo sobre
+                    aplicaciones moviles con React Native, habilidades en
+                    lenguajes MERN. En busca de un crecimiento profesional.
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
 
-            onPress={() => handleShow("one")}
-          >
+        <View>
+          <Modal visible={showAvatar2} transparent animationType="slide">
+            <View style={styles.containerModal}>
+              <View style={styles.containerClosed}>
+                <ImageBackground
+                  style={{
+                    width: "100%",
+                    height: "46%",
+                  }}
+                  source={Portada}
+                  resizeMode="cover"
+                >
+                  <View style={styles.closedModel}>
+                    <TouchableNativeFeedback
+                      onPress={() => setShowAvatar2(false)}
+                    >
+                      <EvilIcons name="close" size={24} color="white" />
+                    </TouchableNativeFeedback>
+                  </View>
+                  <View style={styles.headerModal}>
+                    <View style={styles.avatar}>
+                      <Image
+                        source={avatarSM}
+                        style={styles.backgroundImg}
+                        resizeMode="cover"
+                      />
+                      <View style={styles.containerName}>
+                        <Text style={styles.textName}>Sergio</Text>
+                        <Text style={styles.textName}>Mendieta</Text>
+                        <Text style={styles.textCargo}>Desarrollo</Text>
+                      </View>
+                    </View>
+                  </View>
+                </ImageBackground>
+                <View style={styles.bodyModel}>
+                  <Text>
+                    Desarrollador web full stack, autodidacta, aprendiendo sobre
+                    aplicaciones moviles con React Native, habilidades en
+                    lenguajes MERN. En busca de un crecimiento profesional. En
+                    este proyecto tuve la ocasión de poder trabajar en el area
+                    de desarrollo, tanto en el frontend como el backend e
+                    Investigación.{" "}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
+        <View>
+          <Modal visible={showAvatar3} transparent animationType="slide">
+            <View style={styles.containerModal}>
+              <View style={styles.containerClosed}>
+                <ImageBackground
+                  style={{
+                    width: "100%",
+                    height: "46%",
+                  }}
+                  source={Portada}
+                  resizeMode="cover"
+                >
+                  <View style={styles.closedModel}>
+                    <TouchableNativeFeedback
+                      onPress={() => setShowAvatar3(false)}
+                    >
+                      <EvilIcons name="close" size={24} color="white" />
+                    </TouchableNativeFeedback>
+                  </View>
+                  <View style={styles.headerModal}>
+                    <View style={styles.avatar}>
+                      <Image
+                        source={avatar}
+                        style={styles.backgroundImg}
+                        resizeMode="cover"
+                      />
+                      <View style={styles.containerName}>
+                        <Text style={styles.textName}>Johana</Text>
+                        <Text style={styles.textName}>Torres</Text>
+                        <Text style={styles.textCargo}>Investigación</Text>
+                      </View>
+                    </View>
+                  </View>
+                </ImageBackground>
+                <View style={styles.bodyModel}>
+                  <Text>
+                    Desarrollador web full stack, autodidacta, aprendiendo sobre
+                    aplicaciones moviles con React Native, habilidades en
+                    lenguajes MERN. En busca de un crecimiento profesional.
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </Modal>
+        </View>
+        <View style={styles.containerAvatar}>
+          <TouchableNativeFeedback onPress={() => handleShow("one")}>
             <View style={styles.avatar}>
               <Image
-                source={Avatar}
+                source={avatar}
                 style={styles.backgroundImg}
                 resizeMode="cover"
               />
               <View style={styles.containerName}>
-                <Text style={styles.textName}>Nombre</Text>
-                <Text style={styles.textName}>Apellido</Text>
-                <Text style={styles.textCargo}>Cargo</Text>
+                <Text style={styles.textName}>Eliana</Text>
+                <Text style={styles.textName}>Molinari</Text>
+                <Text style={styles.textCargo}>Investigación</Text>
               </View>
             </View>
           </TouchableNativeFeedback>
           <TouchableNativeFeedback onPress={() => handleShow("two")}>
             <View style={styles.avatar}>
               <Image
-                source={Avatar}
+                source={avatarSM}
                 style={styles.backgroundImg}
                 resizeMode="cover"
               />
               <View style={styles.containerName}>
-                <Text style={styles.textName}>Nombre</Text>
-                <Text style={styles.textName}>Apellido</Text>
-                <Text style={styles.textCargo}>Cargo</Text>
+                <Text style={styles.textName}>Sergio</Text>
+                <Text style={styles.textName}>Mendieta</Text>
+                <Text style={styles.textCargo}>Desarrollo</Text>
               </View>
             </View>
           </TouchableNativeFeedback>
@@ -70,14 +209,14 @@ const AboutTeam = ({ navigator }) => {
             <TouchableNativeFeedback onPress={() => handleShow("three")}>
               <View style={styles.avatar}>
                 <Image
-                  source={Avatar}
+                  source={avatar}
                   style={styles.backgroundImg}
                   resizeMode="cover"
                 />
                 <View style={styles.containerName}>
                   <Text style={styles.textName}>Johana</Text>
                   <Text style={styles.textName}>Torres</Text>
-                  <Text style={styles.textCargo}>Investigacion</Text>
+                  <Text style={styles.textCargo}>Investigación</Text>
                 </View>
               </View>
             </TouchableNativeFeedback>
@@ -207,5 +346,50 @@ const styles = StyleSheet.create({
     marginTop: 40,
     borderBottomColor: "blue",
     borderBottomWidth: 1,
+  },
+  containerModal: {
+    flex: 1,
+    backgroundColor: "rgba(1,1,1, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  containerClosed: {
+    height: "70%",
+    width: "90%",
+    backgroundColor: "#5DADE2",
+  },
+  headerModal: {
+    top: 60,
+    height: 45,
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  closedModel: {
+    top: 10,
+    right: 20,
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  bodyModel: {
+    top: 50,
+    height: "auto",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    textAlign: "justify",
+    marginHorizontal: 10,
+  },
+  containerLogo: {
+    top: 20,
+    marginHorizontal: 20,
+    marginVertical: 25,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  logo: {
+    width: 50,
+    height: 50,
   },
 });
