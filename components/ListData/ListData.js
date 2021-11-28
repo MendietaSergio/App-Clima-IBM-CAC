@@ -11,7 +11,13 @@ import {
   Dimensions,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { cloudy, rainy, snow, sunny } from "../../assets/backgroundImages/Index";
+import {
+  cloudy,
+  rainy,
+  snow,
+  sunny,
+  haze,
+} from "../../assets/backgroundImages/Index";
 import { AntDesign } from "@expo/vector-icons";
 const ListData = ({ navigation, item, deleteCity }) => {
   const { nameCity, country, temp_max, temp_min, temp, _id } = item;
@@ -21,14 +27,11 @@ const ListData = ({ navigation, item, deleteCity }) => {
   const fetchClima = async (ciudad) => {
     const apiID = "8eaae482f433816013eb58a3b326c92d";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiID}`;
-    console.log(url);
     try {
       const resp = await fetch(url);
       if (resp.status == 200) {
         const data = await resp.json();
-        console.log("data =>", data);
         setResultado(data);
-        console.log("resultado ", resultado);
       } else {
         showAlert();
       }
@@ -39,8 +42,6 @@ const ListData = ({ navigation, item, deleteCity }) => {
   useEffect(() => {
     if (resultado !== null) {
       const [{ main }] = resultado.weather;
-      console.log("main name", main);
-
       setBackgroundImage(getBackgroundImage(main));
     }
   }, [resultado]);
@@ -50,7 +51,6 @@ const ListData = ({ navigation, item, deleteCity }) => {
     if (weather === "Rain") return rainy;
     if (weather === "Haze") return haze;
     if (weather === "Clouds") return cloudy;
-    return haze;
   };
   // CAMBIAR EL COLOR DEL TEXTO EN BASE A LA IMAGEN DE FONDO
   let textColor = backgroundImage !== sunny ? "white" : "black";
@@ -180,8 +180,8 @@ const styles = StyleSheet.create({
   },
   backgroundImg: {
     flex: 1,
-    overflow:'hidden',
-    borderRadius:10,
+    overflow: "hidden",
+    borderRadius: 10,
     // width: Dimensions.get("screen").width,
     padding: 0,
   },
