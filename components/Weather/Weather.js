@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Dimensions, ImageBackground, Image } from "react-native";
-
+import React from "react";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import InputSearch from "../InputSearch/InputSearch";
 import { Feather } from "@expo/vector-icons";
-import { Ionicons } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
+import { Ionicons } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 import Maps from "../Maps/Maps";
 
 const Weather = ({
@@ -13,7 +12,7 @@ const Weather = ({
   viewInputSearch = true,
   ListWeather,
   margin = false,
-  colorText
+  colorText,
 }) => {
   const d = new Date();
   let hours = d.toLocaleTimeString();
@@ -22,37 +21,40 @@ const Weather = ({
     weather,
     main: { temp, temp_min, temp_max, humidity },
     wind: { speed },
-    coord: {lat, lon}
+    coord: { lat, lon },
   } = resultado;
-  console.log("descripcion ", weather[0]);
   const kelvin = 273.15;
-  const [textInfo, setTextInfo] = useState("");
-  let marginProps = margin ? 10 : 40
-  const WeatherIcon = weather => {
-    if (weather[0].main == 'Sunny') {
-      return <Fontisto name="day-sunny" size={50} color={colorText} />
+
+  let marginProps = margin ? 10 : 40;
+  const WeatherIcon = (weather) => {
+    if (weather[0].main == "Sunny") {
+      return <Fontisto name="day-sunny" size={50} color={colorText} />;
     }
-    if (weather[0].main == 'Rain') {
-      return <Ionicons name="rainy" size={50} color={colorText} />
+    if (weather[0].main == "Rain") {
+      return <Ionicons name="rainy" size={50} color={colorText} />;
     }
-    if (weather[0].main== 'Clouds') {
-      return <Ionicons name="ios-cloudy-outline" size={50} color={colorText} />
+    if (weather[0].main == "Clouds") {
+      return <Ionicons name="ios-cloudy-outline" size={50} color={colorText} />;
     }
-    if (weather[0].main == 'Clear') {
-      return <Fontisto name="night-clear" size={50} color={colorText} />
-    } 
-    if (weather[0].main == 'Snow') {
-      return <Feather name="cloud-snow" size={50} color={colorText} />
-    } 
+    if (weather[0].main == "Clear") {
+      return <Fontisto name="night-clear" size={50} color={colorText} />;
+    }
+    if (weather[0].main == "Snow") {
+      return <Feather name="cloud-snow" size={50} color={colorText} />;
+    }
   };
   return (
     <View>
       {viewInputSearch ? (
-        <InputSearch fetchClima={fetchClima} ListWeather={ListWeather} colorText={colorText}/>
+        <InputSearch
+          fetchClima={fetchClima}
+          ListWeather={ListWeather}
+          colorText={colorText}
+        />
       ) : null}
-      <View style={{...styles.container, marginVertical: marginProps}}>
+      <View style={{ ...styles.container, marginVertical: marginProps }}>
         <View style={{ ...styles.hourInfo }}>
-          <Text style={{color:colorText}}>{hours}</Text>
+          <Text style={{ color: colorText }}>{hours}</Text>
         </View>
         <View style={styles.titleInfo}>
           <Text style={{ ...styles.titleInfo, fontSize: 18, color: colorText }}>
@@ -60,32 +62,53 @@ const Weather = ({
           </Text>
         </View>
         <View style={styles.extraInfo}>
-          <Text style={{ ...styles.headerText, fontWeight: "bold", color: colorText }}>
+          <Text
+            style={{
+              ...styles.headerText,
+              fontWeight: "bold",
+              color: colorText,
+            }}
+          >
             {parseInt(temp - kelvin)}°
           </Text>
           <View style={styles.icon}>
             {WeatherIcon(weather)}
-            <Text style={{...styles.headerDescrip, color: colorText}}>{weather[0].description}</Text>
+            <Text style={{ ...styles.headerDescrip, color: colorText }}>
+              {weather[0].description}
+            </Text>
           </View>
         </View>
         <View style={styles.containerTemp}>
-          <Text style={{ ...styles.headerText, fontSize: 18, color: colorText }}>
+          <Text
+            style={{ ...styles.headerText, fontSize: 18, color: colorText }}
+          >
             Min: {parseInt(temp_min - kelvin)}°
           </Text>
-          <Text style={{ ...styles.headerText, fontSize: 18, color: colorText }}>
+          <Text
+            style={{ ...styles.headerText, fontSize: 18, color: colorText }}
+          >
             Max: {parseInt(temp_max - kelvin)}°
           </Text>
         </View>
         <View style={styles.containerButtom}>
           <View>
-            <Maps lat={lat} lon={lon}/>
+            <Maps lat={lat} lon={lon} />
           </View>
-          <View style={{...styles.dividerHorizontal, borderBottomColor: colorText}} />
+          <View
+            style={{
+              ...styles.dividerHorizontal,
+              borderBottomColor: colorText,
+            }}
+          />
           <View style={styles.containerInfo}>
             <View styles={{ alignItems: "center" }}>
-              <Text style={{...styles.infoText, color: colorText}}>Viento</Text>
-              <Text style={{...styles.infoText, color: colorText}}>{speed}</Text>
-              <Text style={{...styles.infoText, color: colorText}}>KM/H</Text>
+              <Text style={{ ...styles.infoText, color: colorText }}>
+                Viento
+              </Text>
+              <Text style={{ ...styles.infoText, color: colorText }}>
+                {speed}
+              </Text>
+              <Text style={{ ...styles.infoText, color: colorText }}>KM/H</Text>
               <View style={styles.infoBar}>
                 <View
                   style={{
@@ -97,9 +120,13 @@ const Weather = ({
               </View>
             </View>
             <View style={{ alignItems: "center" }}>
-              <Text style={{...styles.infoText, color: colorText}}>Humedad</Text>
-              <Text style={{...styles.infoText, color: colorText}}>{humidity}</Text>
-              <Text style={{...styles.infoText, color: colorText}}>%</Text>
+              <Text style={{ ...styles.infoText, color: colorText }}>
+                Humedad
+              </Text>
+              <Text style={{ ...styles.infoText, color: colorText }}>
+                {humidity}
+              </Text>
+              <Text style={{ ...styles.infoText, color: colorText }}>%</Text>
               <View style={styles.infoBar}>
                 <View
                   style={{
@@ -176,7 +203,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   infoText: {
-    color: "black",
+    textShadowColor: "rgba(242, 242, 242, 0.9)",
+    textShadowOffset: { width: -1, height: 0 },
+    textShadowRadius: 10,
     fontSize: 14,
     fontWeight: "bold",
   },
@@ -186,7 +215,7 @@ const styles = StyleSheet.create({
     height: 5,
     backgroundColor: "rgba(255, 255, 255, 0.5)",
   },
-  containerButtom:{
-    marginTop: 40
-  }
+  containerButtom: {
+    marginTop: 40,
+  },
 });
