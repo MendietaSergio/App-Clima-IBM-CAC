@@ -81,18 +81,18 @@ const Home = ({ navigation }) => {
                 </Text>
               </View>
             </View>
-            <View style={styles.containerTeam}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={styles.btnTeam}
-                onPress={() => navigation.navigate("AboutTeam")}
-              >
-                <Text style={(styles.textTeam, { color: "black" })}>
-                  Acerca de nosotros
-                </Text>
-              </TouchableOpacity>
-            </View>
           </ImageBackground>
+          <View style={styles.containerTeam}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.btnTeam}
+              onPress={() => navigation.navigate("AboutTeam")}
+            >
+              <Text style={(styles.textTeam, { color: "black" })}>
+                Acerca de nosotros
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
       {/* MENU */}
@@ -134,6 +134,8 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: "auto",
+    marginBottom:150
   },
   textTitle: {
     fontSize: 20,
@@ -163,10 +165,11 @@ const styles = StyleSheet.create({
   },
   containerTeam: {
     marginBottom: 50,
-    justifyContent: "center",
-    alignItems: "center",
     flex: 1,
     height: 60,
+    position:'absolute',
+    bottom:-130,
+    right: 100
   },
   btnTeam: {
     backgroundColor: "#4DD0E1",
