@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
+  ImageBackground,
 } from "react-native";
+import { backgroundHome } from "../assets/backgroundImages/Index";
 import { FontAwesome } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
@@ -15,64 +17,82 @@ const Home = ({ navigation }) => {
     <>
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.textTitle}>Bienvenidos a ClimAPP</Text>
-          <View style={{ marginTop: 20 }}>
-            <Text style={styles.textSubTitle}>Descripción de la app</Text>
-            <View style={styles.containerInfo}>
-              <Text style={styles.textContent}>
-                Aplicación para estar informado sobre el clima en cada ciudad
-                que quieras, te da la posibilidad de poder tener una lista
-                personalizada de ciudades con ina breve y detallada información
-                de cómo va a estar el día a día.
-              </Text>
+          <ImageBackground
+            style={{
+              width: "100%",
+              height: "52%",
+            }}
+            source={backgroundHome}
+            resizeMode="cover"
+          >
+            <Text style={styles.textTitle}>Bienvenidos a ClimAPP</Text>
+            <View style={{ marginTop: 20 }}>
+              <Text style={styles.textSubTitle}>Descripción de la app</Text>
+              <View style={styles.containerInfo}>
+                <Text style={styles.textContent}>
+                  Aplicación para estar informado sobre el clima en cada ciudad
+                  que quieras, te da la posibilidad de poder tener una lista
+                  personalizada de ciudades con información breve y detallada de
+                  cómo va a estar el día a día.
+                </Text>
+              </View>
             </View>
-          </View>
-          <View style={{ marginTop: 0 }}>
-            <Text style={styles.textSubTitle}>Uso</Text>
-            <View style={{ padding: 10 }}>
-              <Text style={styles.textList}>Home:</Text>
-              <Text style={styles.textListContent}>
-                {" "}
-                Información sobre la aplicación, manera de uso, flujo de pila.
-              </Text>
-              <Text style={styles.textList}>Search:</Text>
-              <Text style={styles.textListContent}>
-                {" "}
-                Buscador, en el cual vas a poder ver en primera instancia tu
-                ubicación actual y en la barra de busqueda vas a poder tipear y
-                buscar la ciudad que deseas saber su clima, en la misma pantalla
-                se puede visualizar los datos obtenidos y te da la opción de
-                agregarlo a tu lista de ciudades en el caso de que no lo tengas
-                guardado, si ya lo tenes te aparecerá un alerta de que ya lo
-                tenes en tu lista.
-              </Text>
-              <Text style={styles.textList}>List:</Text>
-              <Text style={styles.textListContent}>
-                {" "}
-                En esta sección vas a poder ver la lista de ciudades que tengas
-                guardada y también eliminar alguna de la lista, en caso de que
-                no tengas ninguna, te aparecerá que no tienes ninguna ciudad en
-                la lista y te da la opción de ir al buscador, en caso de que
-                tengas ciudades guardadas se van a poder ver reflejadas en la
-                misma pantalla con los datos actualizados. En el caso de que
-                quieras ver más detalles, al hacerle click a alguna ciudad de la
-                lista, la misma te llevará a la pantalla donde se ve la ciduad
-                seleccionada con mas información y te da la posibilidad de ver
-                en que parte del mapa esta ubicado.
-              </Text>
+            <View style={{ marginTop: 30 }}>
+              <Text style={styles.textSubTitle}>Uso</Text>
+              <View style={{ padding: 10 }}>
+                <Text style={styles.textList}>Home:</Text>
+                <Text style={styles.textListContent}>
+                  {" "}
+                  Información sobre la aplicación, manera de uso, flujo de pila.
+                </Text>
+                <Text style={styles.textList}>Search:</Text>
+                <Text style={styles.textListContent}>
+                  {" "}
+                  Buscador, en el cual vas a poder ver en primera instancia tu
+                  ubicación actual y en la barra de busqueda vas a poder tipear
+                  y buscar la ciudad que deseas saber su clima, en la misma
+                  pantalla se puede visualizar los datos obtenidos junto con su
+                  ubicación en el mapa y te da la opción de agregarlo a tu lista
+                  de ciudades en el caso de que no lo tengas guardado, si ya lo
+                  tenes te aparecerá un alerta de que ya lo tenes en tu lista.
+                </Text>
+                <Text style={styles.textList}>List:</Text>
+                <Text style={styles.textListContent}>
+                  {" "}
+                  En esta sección vas a poder ver la lista de ciudades que
+                  tengas guardada y también eliminar alguna de la lista, en caso
+                  de que no tengas ninguna, te aparecerá que no tienes ninguna
+                  ciudad en la lista y te da la opción de ir al buscador, en
+                  caso de que tengas ciudades guardadas se van a poder ver
+                  reflejadas en la misma pantalla con los datos actualizados. En
+                  el caso de que quieras ver más detalles, al hacerle click a
+                  alguna ciudad de la lista, la misma te llevará a la pantalla
+                  donde se ve la ciduad seleccionada con mas información y te da
+                  la posibilidad de ver en que parte del mapa esta ubicado.
+                </Text>
+                <Text style={styles.textList}>AboutTeam:</Text>
+                <Text style={styles.textListContent}>
+                  {" "}
+                  Aquí vas a encontrar información del grupo que realizó la
+                  aplicación, una breve reseña e información adicional de las
+                  tecnologias utilizadas para poder lograrlo. También dejamos a
+                  disposición el link de Github, en el cual se encuentra el
+                  repositorio del proyecto.
+                </Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.containerTeam}>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.btnTeam}
-              onPress={() => navigation.navigate("AboutTeam")}
-            >
-              <Text style={(styles.textTeam, { color: "black" })}>
-                Acerca de nosotros
-              </Text>
-            </TouchableOpacity>
-          </View>
+            <View style={styles.containerTeam}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.btnTeam}
+                onPress={() => navigation.navigate("AboutTeam")}
+              >
+                <Text style={(styles.textTeam, { color: "black" })}>
+                  Acerca de nosotros
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
         </View>
       </ScrollView>
       {/* MENU */}
