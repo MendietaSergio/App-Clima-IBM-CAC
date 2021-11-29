@@ -10,9 +10,8 @@ import {
   Modal,
   ImageBackground,
 } from "react-native";
-import { avatar, avatarSM } from "../assets/backgroundImages/Index";
+import { avatar, avatarSM, Portada } from "../assets/backgroundImages/Index";
 import { EvilIcons } from "@expo/vector-icons";
-import Portada from "../assets/backgroundImages/Img/cloudy.jpeg";
 
 const AboutTeam = ({ navigator }) => {
   const [showAvatar1, setShowAvatar1] = useState(false);
@@ -73,9 +72,11 @@ const AboutTeam = ({ navigator }) => {
                 </ImageBackground>
                 <View style={styles.bodyModel}>
                   <Text>
-                    Desarrollador web full stack, autodidacta, aprendiendo sobre
-                    aplicaciones moviles con React Native, habilidades en
-                    lenguajes MERN. En busca de un crecimiento profesional.
+                    Desarrolladora full stack, en esta ocasión fui encargada de
+                    ser parte del lado de la investigación para realizar la
+                    aplicación designada. Junto a mis compañeros/as, compartimos
+                    información para poder entregar de manera funcional dicha
+                    aplicación, con las espeficicaciones necesarias.
                   </Text>
                 </View>
               </View>
@@ -119,12 +120,12 @@ const AboutTeam = ({ navigator }) => {
                 </ImageBackground>
                 <View style={styles.bodyModel}>
                   <Text>
-                    Desarrollador web full stack, autodidacta, aprendiendo sobre
-                    aplicaciones moviles con React Native, habilidades en
-                    lenguajes MERN. En busca de un crecimiento profesional. En
-                    este proyecto tuve la ocasión de poder trabajar en el area
-                    de desarrollo, tanto en el frontend como el backend e
-                    Investigación.{" "}
+                    Desarrollador web Full Stack, autodidacta. En busca de
+                    crecimiento profesional, actualmente aprendiendo React
+                    Native para aplicaciones moviles con habilidades en
+                    lenguajes MERN. En este proyecto tuve la oportunidad de
+                    poder trabajar en las areas de desarrollo frontend, backend
+                    e investigación.
                   </Text>
                 </View>
               </View>
@@ -167,9 +168,11 @@ const AboutTeam = ({ navigator }) => {
                 </ImageBackground>
                 <View style={styles.bodyModel}>
                   <Text>
-                    Desarrollador web full stack, autodidacta, aprendiendo sobre
-                    aplicaciones moviles con React Native, habilidades en
-                    lenguajes MERN. En busca de un crecimiento profesional.
+                    Desarrolladora full stack, en esta ocasión fui encargada de
+                    ser parte del lado de la investigación para realizar la
+                    aplicación designada. Junto a mis compañeros/as, compartimos
+                    información para poder entregar de manera funcional dicha
+                    aplicación, con las espeficicaciones necesarias.
                   </Text>
                 </View>
               </View>
@@ -239,6 +242,7 @@ const AboutTeam = ({ navigator }) => {
             <Text style={styles.listTool}>○ React Native</Text>
             <Text style={styles.listTool}>○ Expo Cli</Text>
             <Text style={styles.listTool}>○ Node JS</Text>
+            <Text style={styles.listTool}>○ Express</Text>
             <Text style={styles.listTool}>○ MongoDB</Text>
             <Text style={styles.listTool}>○ API OpenWeatherMap</Text>
             <Text style={styles.listTool}>○ Trello</Text>
