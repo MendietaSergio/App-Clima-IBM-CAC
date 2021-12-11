@@ -10,7 +10,7 @@ import {
   Modal,
   ImageBackground,
 } from "react-native";
-import { avatar, avatarSM, Portada } from "../assets/backgroundImages/Index";
+import { avatar, avatarSM, Portada, avatarJ } from "../assets/backgroundImages/Index";
 import { EvilIcons } from "@expo/vector-icons";
 
 const AboutTeam = ({ navigator }) => {
@@ -154,7 +154,7 @@ const AboutTeam = ({ navigator }) => {
                   <View style={styles.headerModal}>
                     <View style={styles.avatar}>
                       <Image
-                        source={avatar}
+                        source={avatarJ}
                         style={styles.backgroundImg}
                         resizeMode="cover"
                       />
@@ -212,7 +212,7 @@ const AboutTeam = ({ navigator }) => {
             <TouchableNativeFeedback onPress={() => handleShow("three")}>
               <View style={styles.avatar}>
                 <Image
-                  source={avatar}
+                  source={avatarJ}
                   style={styles.backgroundImg}
                   resizeMode="cover"
                 />
