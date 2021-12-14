@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Alert,
   Dimensions,
+  Text,
   Keyboard,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -28,6 +29,7 @@ const InputSearch = ({ fetchClima, ListWeather, colorText }) => {
 
   return (
     <>
+      <Text style={{width:'80%', marginLeft: 30, fontSize: 18}}>Ingresar Ciudad</Text>
       <View style={styles.searchBar}>
         <TextInput
           placeholderTextColor="#000"

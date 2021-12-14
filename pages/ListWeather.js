@@ -58,9 +58,9 @@ const ListWeather = ({ navigation }) => {
           {resultado != null ? (
             <>
               {showMaps ? (
-                <>
+                < >
                   <View style={styles.containerList}>
-                    <Maps resultado={resultado} allLocation={true} viewRefLocation={false}/>
+                    <Maps resultado={resultado} allLocation={true} viewRefLocation={false} style={styles.mapaContainer}/>
                   </View>
                 </>
               ) : (
@@ -107,6 +107,13 @@ const styles = StyleSheet.create({
   containerList: {
     flex: 1,
     marginHorizontal: 2.5,
+    borderColor: 'black', //no lo toma
+  },
+  mapaContainer: { //no lo toma
+    
+    borderRadius: 25,
+    borderColor: 'black',
+   
   },
   containerInfo: {
     flex: 1,

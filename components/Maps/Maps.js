@@ -64,10 +64,14 @@ export default Maps;
 const styles = StyleSheet.create({
   container: {
     opacity: 0.8,
+    // backgroundColor: 'black',
+    // borderRadius: 25,
+    
   },
   map: {
     width: Dimensions.get("window").width - 40,
     height: Dimensions.get("window").height / 5,
+    
   },
   maps: {
     width: Dimensions.get("window").width,
