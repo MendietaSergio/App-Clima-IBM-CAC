@@ -10,7 +10,7 @@ import {
   Modal,
   ImageBackground,
 } from "react-native";
-import { avatar, avatarSM, Portada } from "../assets/backgroundImages/Index";
+import { avatarEM,avatar, avatarSM, Portada } from "../assets/backgroundImages/Index";
 import { EvilIcons } from "@expo/vector-icons";
 
 const AboutTeam = ({ navigator }) => {
@@ -58,7 +58,7 @@ const AboutTeam = ({ navigator }) => {
                   <View style={styles.headerModal}>
                     <View style={styles.avatar}>
                       <Image
-                        source={avatar}
+                        source={avatarEM}
                         style={styles.backgroundImg}
                         resizeMode="cover"
                       />
@@ -183,7 +183,7 @@ const AboutTeam = ({ navigator }) => {
           <TouchableNativeFeedback onPress={() => handleShow("one")}>
             <View style={styles.avatar}>
               <Image
-                source={avatar}
+                source={avatarEM}
                 style={styles.backgroundImg}
                 resizeMode="cover"
               />
@@ -292,6 +292,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     padding: 2,
     shadowColor: "#FFF",
+    
   },
   avatar: {
     width: 100,
@@ -300,7 +301,7 @@ const styles = StyleSheet.create({
   backgroundImg: {
     width: 100,
     borderRadius: 50,
-    borderColor: "#5DADE2",
+    borderColor: "#CEA76A",
     borderWidth: 6,
     height: 100,
   },
@@ -341,7 +342,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   textRepo: {
-    color: "#000",
+    color: "#CEA76A",
     fontSize: 14,
     padding: 10,
   },
@@ -391,6 +392,7 @@ const styles = StyleSheet.create({
     marginVertical: 25,
     flexDirection: "row",
     justifyContent: "space-between",
+
   },
   logo: {
     width: 50,

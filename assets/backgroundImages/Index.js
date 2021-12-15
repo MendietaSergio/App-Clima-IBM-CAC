@@ -4,7 +4,8 @@ const snow = require('./Img/snow.jpg')
 const sunny = require('./Img/sunny.jpg')
 const haze = require('./Img/haze.jpg')
 const avatarSM = require('./Avatar/AvatarSM.jpg')
+const avatarEM = require('./Avatar/AvatarEM.jpg')
 const avatar = require('./Avatar/avatar.jpg')
 const Portada = require('./Avatar/portada.jpg')
 const backgroundHome = require('./backgroundHome.jpeg')
-export { cloudy, rainy, snow, sunny, haze, avatar, avatarSM, Portada, backgroundHome}
+export { cloudy, rainy, snow, sunny, haze, avatar, avatarEM, avatarSM, Portada, backgroundHome}
